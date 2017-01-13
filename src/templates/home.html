@@ -24,93 +24,76 @@
 {% block jumbotron %}
  {% if not request.user.is_authenticated %}
 
-<div class="jumbotron">
- <div class="container">
-	<div class="row">
-		<div class='col-sm-6'>
-		<h1>Try Django 1.8</h1>
-		<p>The MVP Landing project is designed to get your project started. The goal is to help you launch as soon as possible with the least amount of investment using time or money. Join Us today.</p>
-		<p>
-		<a class="btn btn-lg btn-primary" href="" role="button">Join Us &raquo;</a>
-		</p>
-		</div>
-		<div class='col-sm-6' >
-			<iframe width="560" height="315" src="https://www.youtube.com/embed/2uLYO1LUf6Q" frameborder="0" allowfullscreen></iframe>
+ <section class="page-section pb-0 bg-dark" data-background="images/full-width-images/section-bg-18.jpg"  id="home">
+                <div class="relative">
+                    
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-10 col-md-offset-1">
+                                
+                                <div class="align-center">
+                                    
+                                    <h1 class="hs-line-8 no-transp font-alt mb-40 mb-xs-20">Get yourself checked with this assessment tool</h1>
+                                    
+                                    <h2 class="hs-line-15 font-alt">The best way including complex algorithms for analysis</h2>
+                                    
+                                </div>
+                        
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="relative bg-dark-alfa-50 mt-60 pt-80 pt-xs-30 pb-70 pb-xs-20">
+                        
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-10 col-sm-offset-1">
+                                {% if not request.user.is_authenticated and not "/accounts/login" in request.get_full_path %}
+                                    
 
- 		</div>
-		</div>
-	</div>
- </div>
+                                         {% if not request.user.is_authenticated and not "/accounts/login" in request.get_full_path %}
+            <form class="form contact-form" method='POST' action='{% url "auth_login" %}' >{% csrf_token %}
+
+            <div class="row" ">
+              <div class="form-group col-md-6 col-md-4 mb-10" >
+                  <input type='text' class='form-control' name='username' placeholder='Username' style="text-transform: none; height: 37px; font-size:12px;" /> 
+              </div>
+              <div class="form-group col-sm-6 col-md-4 mb-10">
+                  <input type='password' class='form-control' name='password' placeholder='Password' style="height: 37px; font-size:12px;"/>
+              </div>
+              <div class="col-sm-6 col-md-3 mb-10">
+
+              <button type='submit' class="btn btn-mod btn-border-w btn-medium btn-round form-control">Login Now</button>
+              </div>
+
+               
+              </div>
+          </form>
+          {% endif %}
+                                        
+                                    
+                                     {% endif %}
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                    
+                </div>
+            </section>
+
+
+     
+
+
+
  {% endif %}
+ 
 {% endblock %}
 
 
 
 
-{% block content %}
- {% if request.user.is_authenticated %}
-<h1>You are logged in!</h1>
-
-	{% if queryset %}
-	<h2>Welcome Staff</h2>
-	<table class='table'>
-	{% for instance in queryset %}
-		<tr><td>{{ forloop.counter }}</td><td>{{ instance.email }}</td><td>{{ instance.full_name }}</td><td>{{ instance.timestamp|timesince }} ago</td></tr>
-		{% if instance.email == "abc@gmail.edu" %}
-		<tr><td>is equal</td></tr>
-		{% endif %}
-	{% endfor %}
-	</table>
-
-	{% endif %}
-
- {% else %}
-<div class="row">
-
-  <div class="col-sm-3 pull-right">
-  	
-			<p class='lead text-align-center'>{{ title }}</p>
-
-			<form method='POST' action=''>{% csrf_token %}
-			{{ form|crispy }}
-
-			<input class='btn btn-primary' type='submit' value='Sign Up' />
-
-			</form>
-	</div>
-
-	<div class='col-sm-3'>
-<p class='lead text-align-center'>Django &amp; Bootstrap</p>
-			<img src='{% static "img/marketing1.jpg" %}' class='img-responsive' />
-</div>
-
-<div class='col-sm-3'>
-<p class='lead text-align-center'>Created for Starters 
-<br/>
-<span class='fa-stack fa-lg fa-5x'>
-<i class='fa fa-comment-o fa-stack-2x'></i>
-<i style='color:yellow;' class="fa fa-bolt fa-stack-1x"></i>
-
-</span>
-</p>
-
-</div>
-
-<div class='col-sm-3'>
-<p class='lead text-align-center'>Always Open Source <br/><br/>
-
-<span class="fa-stack fa-lg fa-5x">
-<i class="fa fa-circle-o-notch fa-stack-2x"></i>
-  <!-- <i class="fa fa-square-o fa-stack-2x"></i> -->
-  <i class="fa fa-github fa-stack-1x"></i>
-</span>
-</p>
-
-
-</div>
-
-
-</div>
-{% endif %}
-
-{% endblock %}
